@@ -11,7 +11,7 @@ class Data
 	public $sensorpk;
 	public $po;
 	public $te;
-	public $tiempo;
+  public $tiempo = date("Y-m-d H:i:s");
 
 
     public function __construct($db)
@@ -33,7 +33,7 @@ class Data
 		 $stmt->bindParam(1, $this->sensorpk);
      $stmt->bindParam(2, $this->po);
      $stmt->bindParam(3, $this->te);
-     $stmt->bindParam(4, $this->fecha);
+     $stmt->bindParam(4, $this->tiempo);
 
 
        if ($stmt->execute())
@@ -49,7 +49,7 @@ class Data
      // Leer Registros
     function readAll($page,$from_record_num,$records_per_page)
     {
-			$query ="select distinct idregistro,sensorpk,po,te,fecha
+			$query ="select distinct idregistro,sensorpk,po,te,tiempo
 			from
 			registros as r
 			inner join
