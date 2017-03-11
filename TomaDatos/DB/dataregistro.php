@@ -8,32 +8,26 @@ class Data
 
 	// Propiedades del objeto
   public $idregistro;
-	public $sensorpk;
+	public $sensorfk;
 	public $po;
 	public $te;
-  public $tiempo = date("Y-m-d H:i:s");
 
 
     public function __construct($db)
-	//function __construct($db)
 	{
 		$this->conn = $db;
 	}
 
-    // Creacion de los metodos o productos
-
     function create()
     {
-       // Escribir el Query (La Consulta)
 
-    $query = "insert into ". $this->table_name." values (null,?,?,?,?)";
+    $query = "insert into ". $this->table_name." values (null,?,?,?,now())";
 
      $stmt = $this->conn->prepare($query);
 
-		 $stmt->bindParam(1, $this->sensorpk);
+		 $stmt->bindParam(1, $this->sensorfk);
      $stmt->bindParam(2, $this->po);
      $stmt->bindParam(3, $this->te);
-     $stmt->bindParam(4, $this->tiempo);
 
 
        if ($stmt->execute())
@@ -49,7 +43,7 @@ class Data
      // Leer Registros
     function readAll($page,$from_record_num,$records_per_page)
     {
-			$query ="select distinct idregistro,sensorpk,po,te,tiempo
+			$query ="select distinct idregistro,sensorfk,po,te,tiempo
 			from
 			registros as r
 			inner join

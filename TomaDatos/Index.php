@@ -18,22 +18,21 @@ $product = new Data($db);
     <?php
 
     if ($_GET){
-    	// $_POST TE REGRESA EL VALOR DE LA VARIABLE EN EL NAVEGADOR
-    	// escribir lo que esta escrito en la propiedad name del input
 
-           $product->sensorpk = $_GET['sensorpk'];
+           $product->sensorpk = $_GET['sensorfk'];
            $product->po = $_GET['po'];
            $product->te = $_GET['te'];
-           $product->timepo = $_GET['tiempo'];
            if($product->create()) {
            ?>
-           <div class="alert alert-success alert-dismissible" role="alert">
-
+           <div class="alert alert-success alert-dismissible" role="alert"></div>
 
            <?php
-                   }
-                 else
+            }
+              else
                    {
+                     ?>
+                     <div class="alert alert-danger alert-dismissible" role="alert"></div>
+                     <?php
                    }
                  }
            ?>
